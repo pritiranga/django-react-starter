@@ -1,6 +1,6 @@
 # [Django & React](https://blog.appseed.us/how-to-integrate-django-with-react/) `Codebase`
 
-Open-source **Django Starter** bundled with React, React-Flow - Actively supported by AppSeed. The code for this starter is fully explained [here](https://blog.appseed.us/how-to-integrate-django-with-react/).
+Open-source **Django Starter** bundled with React, React-Flow provided by [App-Generator](https://app-generator.dev/). The code for this starter is fully explained [here](https://blog.appseed.us/how-to-integrate-django-with-react/).
 
 - 👉 [Django & React](https://django-react-starter.onrender.com/charts) - `LIVE deployment`
   - [ReCharts](https://django-react-starter.onrender.com/charts) `sample page`
@@ -13,7 +13,7 @@ Open-source **Django Starter** bundled with React, React-Flow - Actively support
 
 - 🚀 `Stack`: **Django** & **React**
 - ✅ Tooling: `Webpack`
-- ✅ `Design`: [Django Theme Datta](https://github.com/app-generator/django-admin-datta) - `Free Version`
+- ✅ `Design`: [Datta Able](https://app-generator.dev/product/datta-able/) - `Free Version`
 - ✅ `Sections` covered by the design:
   - ✅ **Admin section** (reserved for superusers)
   - ✅ **Authentication**: `Django.contrib.AUTH`, Registration
@@ -154,4 +154,4 @@ The project is coded using a simple and intuitive structure presented below:
 <br />
 
 ---
-[Django & React](https://blog.appseed.us/how-to-integrate-django-with-react/) `Codebase` - `Open-Source` starter crafted by **[AppSeed](https://appseed.us)**.
+[Django & React](https://blog.appseed.us/how-to-integrate-django-with-react/) `Codebase` - `Open-Source` starter crafted by **[App-Generator](https://app-generator.dev/)**.
