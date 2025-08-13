@@ -1,24 +1,21 @@
-# Stage 1: Build the React app
-FROM node:16.15-alpine AS react-build
+# Backend Dockerfile for Django
+FROM python:3.10-slim
+
+# Prevent Python from writing .pyc files and buffer logs
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
 WORKDIR /app
 
-COPY package.json webpack.config.js .babelrc /app/
-RUN yarn install
-COPY frontend/ /app/frontend/
-RUN yarn build
-
-# Stage 2: Build the Django app
-FROM python:3.10-alpine
-WORKDIR /app
-COPY requirements.txt /app/
-COPY --from=react-build /app/ /app/
+# Install dependencies
+COPY backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . /app/
+# Copy the backend source code
+COPY backend/ .
 
-RUN python manage.py makemigrations
-RUN python manage.py migrate
-RUN python manage.py collectstatic --no-input
+# Expose Django's port
+EXPOSE 8000
 
-# Start the Django app
-CMD ["gunicorn", "--config", "gunicorn-cfg.py", "core.wsgi"]
+# Run database migrations and start server
+CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]

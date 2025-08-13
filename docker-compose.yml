@@ -1,29 +1,45 @@
-version: '3.8'
+version: "3.9"
+
 services:
-  appseed-app:
-    container_name: appseed_app
-    restart: always
-    build: .
-    ports:
-      - "5005:5005"
-    networks:
-      - db_network
-      - web_network
-  nginx:
-    container_name: nginx
-    restart: always
-    image: "nginx:latest"
-    ports:
-      - "5085:5085"
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    env_file:
+      - .env
     volumes:
-      - ./nginx:/etc/nginx/conf.d
+      - postgres_data:/var/lib/postgresql/data
     networks:
-      - web_network
-    depends_on: 
-      - appseed-app
+      - app_network
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: django_backend
+    env_file:
+      - .env
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+    networks:
+      - app_network
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: react_frontend
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+    networks:
+      - app_network
+
+volumes:
+  postgres_data:
+
 networks:
-  db_network:
+  app_network:
     driver: bridge
-  web_network:
-    driver: bridge
- 
