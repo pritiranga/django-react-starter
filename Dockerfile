@@ -12,7 +12,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the backend source code
-COPY backend/ .
+COPY . .
 
 # Expose Django's port
 EXPOSE 8000
